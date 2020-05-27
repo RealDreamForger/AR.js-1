@@ -51,65 +51,15 @@
 	<a-scene embedded arjs renderer='precision: medium;' >
 		<a-marker preset="hiro">
 			<a-cone position='0 0.5 0' rotation="0 0 0" radius-bottom="0.5" material='opacity: 0.75; color: red;'></a-cone>
-      <!-- Doorway -->
-	  <a-entity rotation="0 0 90"
-		  <a-box
-			scale="1 6 1"
-			position="-2.5 3 0"
-			color="cyan"></a-box>
-		  <a-box
-			scale="1 6 1"
-			position="2.5 3 0"
-			color="cyan"></a-box>
-		  <a-box
-			scale="6 1 1"
-			position="0 6.5 0"
-			color="cyan"></a-box>
-
-		  <!-- Hider walls -->
-		  <a-entity id="hider-walls">
-			<a-box
-			  scale="6 100 1"
-			  position="0 57 0"
-			  hider-material></a-box>
-			<a-box
-			  scale="94 100 1"
-			  position="-50 50 0"
-			  hider-material></a-box>
-			<a-box
-			  scale="94 100 1"
-			  position="50 50 0"
-			  hider-material></a-box>
-			<a-box
-			  scale="200 100 1"
-			  position="0 50 200"
-			  hider-material></a-box>
-			<a-box
-			  scale="200 1 201"
-			  position="0 100 100"
-			  hider-material></a-box>
-			<a-box
-			  scale="200 1 199"
-			  position="0 -0.5 100"
-			  hider-material></a-box>
-			<a-box
-			  scale="1 100 200"
-			  position="-100 50 100"
-			  hider-material></a-box>
-			<a-box
-			  scale="1 100 200"
-			  position="100 50 100"
-			  hider-material></a-box>
-		  </a-entity>
-
-		  <a-entity id="portal-wall">
-			<a-plane
-			  scale="4 6 1"
-			  rotation="180 0 0"
-			  position="0 3 0.5"
-			  hider-material></a-plane>
-		  </a-entity>
-		  </a-entity>
+			<a-ring
+			  id="portal"
+			  radius-inner="1"
+			  radius-outer="1000"
+			  hider-material
+			></a-ring>
+			<a-entity id="portal-contents">
+				<a-sky color="#6EBAA7"></a-sky>
+		    </a-entity>
 		</a-marker>
 		<a-entity camera></a-entity>
 	</a-scene>
