@@ -27,11 +27,11 @@
       <a-assets>
          <img id="tom" src=" https://stemkoski.github.io/AR-Examples/images/tiles.jpg">
       </a-assets>   
-      <a-marker preset="hiro">
-		<a-box position='0 -0.5 0' material='src:#tom; opacity: 0.5;  side: back' cloak></a-box>
+      <a-marker preset="hiro" smooth="true" smoothCount="3" smoothTolerance="0.005" smoothThreshold="1">>
+		  <!--<a-box position='0 -0.5 0' material='src:#tom; opacity: 0.5;  side: back' cloak></a-box>-->
          <a-box position="0 0.5 0" rotation="0 0 0"  depth="2" height="2" width="2" hider-material></a-box>
 			<a-ring position='0 0 0' rotation="-90 0 0" color="teal" radius-inner="0.0001" radius-outer="3" material='color: red;' ></a-ring>
 		</a-marker>
-      <a-camera-static/>
+		<a-entity camera></a-entity>
 	</a-scene>
 </body>
