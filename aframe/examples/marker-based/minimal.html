@@ -2,27 +2,36 @@
   <!-- we import arjs version without NFT but with marker + location based support -->
  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 <script>
-      // This component gives the invisible hider walls the property they need
-      AFRAME.registerComponent('hider-material', {
+   AFRAME.registerComponent('cloak', {
+      init: function() {
+        let geometry = new THREE.BoxGeometry(1, 1, 1)
+        geometry.faces.splice(4, 2)
+         let material = new THREE.MeshBasicMaterial({
+            colorWrite: false
+         })
+         let mesh = new THREE.Mesh(geometry, material)
+         mesh.scale.set(1.1, 1.1, 1.1)
+         this.el.object3D.add(mesh)
+      }
+   })
+   AFRAME.registerComponent('hider-material', {
         init: function() {
           const mesh = this.el.getObject3D('mesh')
           mesh.material.colorWrite = false
         }
       })
 	  
-      AFRAME.registerComponent('hiden-material', {
-        init: function() {
-          const mesh = this.el.getObject3D('mesh')
-		  mesh.renderOrder = 1
-        }
-      })
 </script>
 <body style='margin : 0px; overflow: hidden;'>
-	<a-scene embedded arjs renderer='precision: medium;' vr-mode-ui="enabled: false">
-		<a-marker preset="hiro" smooth="true" smoothCount="3" smoothTolerance="0.005" smoothThreshold="1">
-			<a-box position="0 0.5 0" rotation="0 0 0"  depth="2" height="2" width="2" hider-material ></a-box>
-			<a-ring position='0 0 0' rotation="-90 0 0" color="teal" radius-inner="0.0001" radius-outer="3" material='color: red;' hiden-material ></a-ring>
+	<a-scene embedded arjs>
+      <a-assets>
+         <img id="tom" src=" https://stemkoski.github.io/AR-Examples/images/tiles.jpg">
+      </a-assets>   
+      <a-marker preset="hiro">
+		<a-box position='0 -0.5 0' material='src:#tom; opacity: 0.5;  side: back' cloak></a-box>
+         <a-box position="0 0.5 0" rotation="0 0 0"  depth="2" height="2" width="2" hider-material></a-box>
+			<a-ring position='0 0 0' rotation="-90 0 0" color="teal" radius-inner="0.0001" radius-outer="3" material='color: red;' ></a-ring>
 		</a-marker>
-		<a-entity camera></a-entity>
+      <a-camera-static/>
 	</a-scene>
 </body>
